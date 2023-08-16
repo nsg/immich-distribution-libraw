@@ -21,7 +21,14 @@ parts:
     build-packages:
       - zlib1g-dev
       - libjpeg8-dev
+      - pkg-config
     stage-packages:
       - libgomp1
       - libjpeg-turbo8
       - liblcms2-2
+    stage:
+      # Headers
+      - -usr/local/include
+      # Various docs and lintian files
+      - -usr/local/share
+      - -usr/share
