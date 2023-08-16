@@ -1,0 +1,27 @@
+name: immich-distribution-libraw
+base: core20
+version: 0.21.1-dist1
+summary: LibRaw packaged for Immich Distribution
+description: |
+  LibRaw packaged for Immich Distribution, this is not intended to be consumed directly.
+architectures:
+  - amd64
+
+grade: stable
+confinement: strict
+
+parts:
+  libraw:
+    plugin: autotools
+    source: https://github.com/libraw/libraw/archive/0.21.1.tar.gz
+    source-checksum: "sha256/b63d7ffa43463f74afcc02f9083048c231349b41cc9255dec0840cf8a67b52e0"
+    override-build: |
+      autoreconf --install
+      snapcraftctl build
+    build-packages:
+      - zlib1g-dev
+      - libjpeg8-dev
+    stage-packages:
+      - libgomp1
+      - libjpeg-turbo8
+      - liblcms2-2
