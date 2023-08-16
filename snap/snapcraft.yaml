@@ -15,6 +15,11 @@ parts:
     plugin: autotools
     source: https://github.com/libraw/libraw/archive/0.21.1.tar.gz
     source-checksum: "sha256/b63d7ffa43463f74afcc02f9083048c231349b41cc9255dec0840cf8a67b52e0"
+    autotools-configure-parameters:
+      - --disable-examples
+      - --prefix=/usr
+      - --enable-jpeg
+      - --enable-zlib
     override-build: |
       autoreconf --install
       snapcraftctl build
@@ -27,8 +32,4 @@ parts:
       - libjpeg-turbo8
       - liblcms2-2
     stage:
-      # Headers
-      - -usr/local/include
-      # Various docs and lintian files
-      - -usr/local/share
       - -usr/share
